@@ -31,7 +31,7 @@ public class BatchConfig {
 	@Bean
 	Job processJob(@Qualifier("batchStep") Step qfreeBatchStep) {
 		
-		System.out.println("<<<<<< in BatchConfig2.processJob() >>>>>>>");
+		System.out.println("<<<<<< in BatchConfig.processJob() >>>>>>>");
 		
 		return jobBuilderFactory.get("processJob")
 				.incrementer(new RunIdIncrementer())
@@ -42,19 +42,19 @@ public class BatchConfig {
 	
 	@Bean
 	ItemReader<String> testReader()  {
-		System.out.println("<<<<<<<  in BatchConfig2.testReader() >>>>>>>");
+		System.out.println("<<<<<<<  in BatchConfig.testReader() >>>>>>>");
 		return new DannyReader();
 	}
 	@Bean
 	ItemWriter<String> testWriter() {
-		System.out.println("<<<<<<<  in BatchConfig2.testWriter() >>>>>>>");
+		System.out.println("<<<<<<<  in BatchConfig.testWriter() >>>>>>>");
 		
 		return new DannyWriter();
 	}
 	
 	@Bean
 	ItemProcessor<String, String> testProcessor() {
-		System.out.println("<<<<<<< in BatchConfig2.testProcessor() >>>>>>>");
+		System.out.println("<<<<<<< in BatchConfig.testProcessor() >>>>>>>");
 		return new DannyProcessor();
 	}
 	
@@ -64,7 +64,7 @@ public class BatchConfig {
 					@Qualifier("testProcessor") ItemProcessor<String, String> processorRef
 					) {
 		
-		System.out.println("<<<<<<< in BatchConfig2.batchStep() >>>>>>>");
+		System.out.println("<<<<<<< in BatchConfig.batchStep() >>>>>>>");
 		
 		return stepBuilderFactory.get("QFreeBatchStep")
 				.<String, String> chunk(1)
@@ -76,7 +76,7 @@ public class BatchConfig {
 	
 	@Bean
 	public JobExecutionListener dannylistener() {
-		System.out.println("in BatchConfig2.dannylistener()");
+		System.out.println("in BatchConfig.dannylistener()");
 		
 		return new JobCompletionListener();
 	}
